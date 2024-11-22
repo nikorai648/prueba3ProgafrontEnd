@@ -1,4 +1,4 @@
-import { agregarLibro, obtenerLibro, actualizarlibro, eliminarLibro} from "./Promesas.js";
+import { agregarLibro, obtenerLibro, actualizarLibro, eliminarLibro} from "./Promesas.js";
 
 window.addEventListener("load", () => {
     console.log("Página cargada");
