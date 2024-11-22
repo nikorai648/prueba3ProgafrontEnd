@@ -60,6 +60,50 @@ window.addEventListener("load", () => {
     })
 })
 
+// Obtener y mostrar los libros en una tabla
+obtenerLibros().then((libros) => {
+    const eTBody = document.getElementById("cuerpoTabla");
+    let filas = "";
+    libros.forEach((libro) => {
+        filas += "<tr>";
+        filas += `<td>${libro.nombre}</td>`;
+        filas += `<td>${libro.autor}</td>`;
+        filas += `<td>${libro.editorial}</td>`;
+        filas += `<td>${libro.anio}</td>`;
+        filas += `<td>${libro.valoracion}</td>`;
+        filas += `<td>${libro.pais}</td>`;
+        filas += `<td>${libro.genero}</td>`;
+        filas += `<td><button id="mod${libro.id}">Modificar</button></td>`;
+        filas += `<td><button id="eli${libro.id}">Eliminar</button></td>`;
+        filas += "</tr>";
+    });
+    eTBody.innerHTML = filas;
+
+    libros.forEach((libro) => {
+        // Botón para actualizar
+        const botonActualizar = document.getElementById(`mod${libro.id}`);
+        botonActualizar.addEventListener("click", () => {
+            alert(`Redirigiendo para modificar el libro con ID: ${libro.id}`);
+            window.location.href = `/actualizar.html?id=${libro.id}`;
+        });
+
+        // Botón para eliminar
+        const botonEliminar = document.getElementById(`eli${libro.id}`);
+        botonEliminar.addEventListener("click", () => {
+            if (confirm(`¿Deseas eliminar el libro "${libro.nombre}"?`)) {
+                eliminarLibro(libro.id).then(() => {
+                    alert("Libro eliminado exitosamente.");
+                    location.reload();
+                }).catch((error) => {
+                    console.error("Error al eliminar el libro:", error);
+                });
+            }
+        });
+    });
+}).catch((error) => {
+    console.error("Error al obtener los libros:", error);
+});
+
 
 
 
