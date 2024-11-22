@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualizar Libro</title>
+    <script src="assets/js/Firebase.js" type="module"></script>
+</head>
+<body>
+
+    <!-- Botones de accesibilidad -->
+    <div class="accesibilidad">
+        <button id="aumentarFuente">Aumentar Fuente</button>
+        <button id="reducirFuente">Reducir Fuente</button>
+        <button id="contraste">Cambiar Contraste</button>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <h1>Actualizar Libro</h1>
+    </header>
+
+    <!-- Main -->
+    <main>
+        <form id="formActualizar">
+            <label>Nombre</label><br>
+            <input type="text" placeholder="Escribir el nombre del libro aquí" id="nombre" name="nombre"/><br>
+            <label>Autor</label><br>
+            <input type="text" placeholder="Escribir el nombre del autor aquí" id="autor" name="autor"/><br>
+            <label>Editorial</label><br>
+            <input type="text" placeholder="Escribir nombre Editorial del libro" id="editorial" name="editorial"/><br>
+            <label>Año</label><br>
+            <input type="date" placeholder="Escribir año lanzamiento del libro" id="anio" name="anio"/><br>
+            <label>Valoración</label><br>
+            <input type="number" placeholder="Escribir la valoración del libro" id="valoracion" name="valoracion"/><br>
+            <label>País de origen</label><br>
+            <input type="text" placeholder="Escribir el país de origen del autor del libro" id="pais" name="pais"/><br>
+            <p>Sexo del autor:</p>
+            <input type="radio" id="sexoMasculino" name="sexo" value="sexoMasculino">
+            <label for="sexoMasculino">Masculino</label></br>
+            <input type="radio" id="sexoFemenino" name="sexo" value="sexoFemenino">
+            <label for="sexoFemenino">Femenino</label></br>
+            <label>Género</label><br>
+            <select id="genero" name="genero">
+                <option>Drama</option>
+                <option>Aventura</option>
+                <option>Comedia</option>
+                <option>Misterio</option>
+            </select>
+            <br><br>
+            <button type="button" id="btnActualizar">Guardar Cambios</button>
+        </form>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Selección de Libros. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="assets/js/actualizar.js" type="module"></script>
+</body>
+</html>

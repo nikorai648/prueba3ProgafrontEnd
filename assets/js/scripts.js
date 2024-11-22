@@ -1,10 +1,10 @@
-import { agregarLibro, obtenerLibro, actualizarLibro, eliminarLibro} from "./Promesas.js";
+import { agregarLibro, obtenerLibros, actualizarlibros, eliminarLibro } from "./Promesas.js";
 
 window.addEventListener("load", () => {
     console.log("Página cargada");
-    document.getElementById("btnAgregar").addEventListener("click",()=>{
-        console.log("Se le dio  al boton Registrar");
-        //Recupero los elementos del formulario
+    document.getElementById("btnAgregar").addEventListener("click", () => {
+        console.log("Se le dio al botón Registrar");
+        // Recupero los elementos del formulario
         let eNombre = document.getElementById("nombre");
         let eAutor = document.getElementById("autor");
         let eEditorial = document.getElementById("editorial");
@@ -14,20 +14,19 @@ window.addEventListener("load", () => {
         let eSexoMasculino = document.getElementById("sexoMasculino");
         let eSexoFemenino = document.getElementById("sexoFemenino");
         let eGenero = document.getElementById("genero");
-        //Recuperar el contenido de los elementos del formulario
+        // Recuperar el contenido de los elementos del formulario
         let vNombre = eNombre.value;
         let vAutor = eAutor.value;
         let vEditorial = eEditorial.value;
         let vAnio = eAnio.value;
-        let vValoracion =eValoracion.value;
+        let vValoracion = eValoracion.value;
         let vPais = ePais.value;
         let vGenero = eGenero.value;
-        //Radios y los checkbox no se recuperan ningun valor, se recupera si esta chequeado
+        // Radios y los checkbox no se recuperan ningún valor, se recupera si está chequeado
         let vSexoMasculino = eSexoMasculino.checked;
         let vSexoFemenino = eSexoFemenino.checked;
         console.log(vNombre);
         console.log(vAutor);
-        console.log(vDirector);
         console.log(vEditorial);
         console.log(vAnio);
         console.log(vValoracion);
@@ -43,67 +42,66 @@ window.addEventListener("load", () => {
         }
 
         let libro = {
-            'nombre':vNombre,
+            'nombre': vNombre,
             'autor': vAutor,
-            'editoial':vEditorial,
-            'anio':vAnio,
-            'valoracion':vValoracion,
-            'pais':vPais,
-            'sexoMasculino':vSexoMasculino,
-            'sexoFemenino':vSexoFemenino,
-            'genero':vGenero,
+            'editorial': vEditorial,
+            'anio': vAnio,
+            'valoracion': vValoracion,
+            'pais': vPais,
+            'sexoMasculino': vSexoMasculino,
+            'sexoFemenino': vSexoFemenino,
+            'genero': vGenero,
         }
-         // Enviar el objeto libro a la función agregarLibro
+        // Enviar el objeto libro a la función agregarLibro
         agregarLibro(libro);
         console.log("Libro registrado:", libro);
         alert("Libro agregado exitosamente.");
-    })
-})
-
-// Obtener y mostrar los libros en una tabla
-obtenerLibros().then((libros) => {
-    const eTBody = document.getElementById("cuerpoTabla");
-    let filas = "";
-    libros.forEach((libro) => {
-        filas += "<tr>";
-        filas += `<td>${libro.nombre}</td>`;
-        filas += `<td>${libro.autor}</td>`;
-        filas += `<td>${libro.editorial}</td>`;
-        filas += `<td>${libro.anio}</td>`;
-        filas += `<td>${libro.valoracion}</td>`;
-        filas += `<td>${libro.pais}</td>`;
-        filas += `<td>${libro.genero}</td>`;
-        filas += `<td><button id="mod${libro.id}">Modificar</button></td>`;
-        filas += `<td><button id="eli${libro.id}">Eliminar</button></td>`;
-        filas += "</tr>";
     });
-    eTBody.innerHTML = filas;
 
-    libros.forEach((libro) => {
-        // Botón para actualizar
-        const botonActualizar = document.getElementById(`mod${libro.id}`);
-        botonActualizar.addEventListener("click", () => {
-            alert(`Redirigiendo para modificar el libro con ID: ${libro.id}`);
-            window.location.href = `/actualizar.html?id=${libro.id}`;
+    // Obtener y mostrar los libros en una tabla
+    obtenerLibros().then((libros) => {
+        const eTBody = document.getElementById("cuerpoTabla");
+        let filas = "";
+        libros.forEach((libro) => {
+            filas += "<tr>";
+            filas += `<td>${libro.nombre}</td>`;
+            filas += `<td>${libro.autor}</td>`;
+            filas += `<td>${libro.editorial}</td>`;
+            filas += `<td>${libro.anio}</td>`;
+            filas += `<td>${libro.valoracion}</td>`;
+            filas += `<td>${libro.pais}</td>`;
+            filas += `<td>${libro.genero}</td>`;
+            filas += `<td><button id="mod${libro.id}">Modificar</button></td>`;
+            filas += `<td><button id="eli${libro.id}">Eliminar</button></td>`;
+            filas += "</tr>";
         });
+        eTBody.innerHTML = filas;
 
-        // Botón para eliminar
-        const botonEliminar = document.getElementById(`eli${libro.id}`);
-        botonEliminar.addEventListener("click", () => {
-            if (confirm(`¿Deseas eliminar el libro "${libro.nombre}"?`)) {
-                eliminarLibro(libro.id).then(() => {
-                    alert("Libro eliminado exitosamente.");
-                    location.reload();
-                }).catch((error) => {
-                    console.error("Error al eliminar el libro:", error);
-                });
-            }
+        libros.forEach((libro) => {
+            // Botón para actualizar
+            const botonActualizar = document.getElementById(`mod${libro.id}`);
+            botonActualizar.addEventListener("click", () => {
+                alert(`Redirigiendo para modificar el libro con ID: ${libro.id}`);
+                window.location.href = `/actualizar.html?id=${libro.id}`;
+            });
+
+            // Botón para eliminar
+            const botonEliminar = document.getElementById(`eli${libro.id}`);
+            botonEliminar.addEventListener("click", () => {
+                if (confirm(`¿Deseas eliminar el libro "${libro.nombre}"?`)) {
+                    eliminarLibro(libro.id).then(() => {
+                        alert("Libro eliminado exitosamente.");
+                        location.reload();
+                    }).catch((error) => {
+                        console.error("Error al eliminar el libro:", error);
+                    });
+                }
+            });
         });
+    }).catch((error) => {
+        console.error("Error al obtener los libros:", error);
     });
-}).catch((error) => {
-    console.error("Error al obtener los libros:", error);
 });
-
 
 
 
