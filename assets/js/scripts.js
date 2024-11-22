@@ -1,10 +1,42 @@
+// Importamos las funciones necesarias desde Promesas.js
 import { agregarLibro, obtenerLibros, actualizarlibros, eliminarLibro } from "./Promesas.js";
 
+// Esperamos a que la página cargue completamente
 window.addEventListener("load", () => {
     console.log("Página cargada");
+
+    // *** Funcionalidades de Accesibilidad ***
+    // Botón para aumentar el tamaño del texto
+    document.getElementById("aumentarTexto").addEventListener("click", () => {
+        console.log("Aumentar texto activado");
+        document.body.style.fontSize = "larger"; // Cambia el tamaño del texto
+    });
+
+    // Botón para reducir el tamaño del texto
+    document.getElementById("reducirTexto").addEventListener("click", () => {
+        console.log("Reducir texto activado");
+        document.body.style.fontSize = "smaller"; // Cambia el tamaño del texto
+    });
+
+    // Botón para cambiar a modo alto contraste
+    document.getElementById("altoContraste").addEventListener("click", () => {
+        console.log("Modo alto contraste activado");
+        const body = document.body;
+        if (!body.classList.contains("alto-contraste")) {
+            body.classList.add("alto-contraste"); // Añade la clase para alto contraste
+            body.style.backgroundColor = "#000"; // Fondo negro
+            body.style.color = "#fff"; // Texto blanco
+        } else {
+            body.classList.remove("alto-contraste"); // Elimina la clase de alto contraste
+            body.style.backgroundColor = ""; // Restaura el fondo original
+            body.style.color = ""; // Restaura el texto original
+        }
+    });
+
+    // *** Función para agregar un libro ***
     document.getElementById("btnAgregar").addEventListener("click", () => {
         console.log("Se le dio al botón Registrar");
-        
+
         // Recupero los elementos del formulario
         let eNombre = document.getElementById("nombre");
         let eAutor = document.getElementById("autor");
@@ -67,7 +99,7 @@ window.addEventListener("load", () => {
         });
     });
 
-    // Obtener y mostrar los libros en una tabla
+    // *** Obtener y mostrar los libros en una tabla ***
     obtenerLibros().then((libros) => {
         const eTBody = document.getElementById("cuerpoTabla");
         let filas = "";
@@ -111,10 +143,4 @@ window.addEventListener("load", () => {
         console.error("Error al obtener los libros:", error);
     });
 });
-
-
-
-
-
-
 
