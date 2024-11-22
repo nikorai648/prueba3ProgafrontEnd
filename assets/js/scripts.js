@@ -53,9 +53,10 @@ window.addEventListener("load", () => {
             'sexoFemenino':vSexoFemenino,
             'genero':vGenero,
         }
-
+         // Enviar el objeto libro a la función agregarLibro
         agregarLibro(libro);
-        console.log(libro);
+        console.log("Libro registrado:", libro);
+        alert("Libro agregado exitosamente.");
     })
 })
 
