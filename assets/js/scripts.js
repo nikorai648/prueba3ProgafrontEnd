@@ -4,6 +4,7 @@ window.addEventListener("load", () => {
     console.log("Página cargada");
     document.getElementById("btnAgregar").addEventListener("click", () => {
         console.log("Se le dio al botón Registrar");
+        
         // Recupero los elementos del formulario
         let eNombre = document.getElementById("nombre");
         let eAutor = document.getElementById("autor");
@@ -14,6 +15,7 @@ window.addEventListener("load", () => {
         let eSexoMasculino = document.getElementById("sexoMasculino");
         let eSexoFemenino = document.getElementById("sexoFemenino");
         let eGenero = document.getElementById("genero");
+
         // Recuperar el contenido de los elementos del formulario
         let vNombre = eNombre.value;
         let vAutor = eAutor.value;
@@ -22,9 +24,11 @@ window.addEventListener("load", () => {
         let vValoracion = eValoracion.value;
         let vPais = ePais.value;
         let vGenero = eGenero.value;
+        
         // Radios y los checkbox no se recuperan ningún valor, se recupera si está chequeado
         let vSexoMasculino = eSexoMasculino.checked;
         let vSexoFemenino = eSexoFemenino.checked;
+
         console.log(vNombre);
         console.log(vAutor);
         console.log(vEditorial);
@@ -36,26 +40,31 @@ window.addEventListener("load", () => {
         console.log(vGenero);
 
         // Validación básica de los datos
-        if (!vNombre || !vAutor || !vEditorial || isNaN(vAnio) || isNaN(vValoracion) || !vPais || !vGenero) {
+        if (!vNombre || !vAutor || !vEditorial || isNaN(vAnio) || isNaN(vValoracion) || !vPais || !vGenero || (!vSexoMasculino && !vSexoFemenino)) {
             alert("Por favor, completa todos los campos correctamente.");
             return;
         }
 
+        // Crear el objeto libro
         let libro = {
             'nombre': vNombre,
             'autor': vAutor,
             'editorial': vEditorial,
-            'anio': vAnio,
-            'valoracion': vValoracion,
+            'anio': parseInt(vAnio), // Convertir a número
+            'valoracion': parseFloat(vValoracion), // Convertir a número
             'pais': vPais,
             'sexoMasculino': vSexoMasculino,
             'sexoFemenino': vSexoFemenino,
             'genero': vGenero,
         }
+
         // Enviar el objeto libro a la función agregarLibro
-        agregarLibro(libro);
-        console.log("Libro registrado:", libro);
-        alert("Libro agregado exitosamente.");
+        agregarLibro(libro).then(() => {
+            console.log("Libro registrado:", libro);
+            alert("Libro agregado exitosamente.");
+        }).catch((error) => {
+            console.error("Error al agregar libro:", error);
+        });
     });
 
     // Obtener y mostrar los libros en una tabla
@@ -102,6 +111,7 @@ window.addEventListener("load", () => {
         console.error("Error al obtener los libros:", error);
     });
 });
+
 
 
 
