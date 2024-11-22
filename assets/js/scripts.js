@@ -49,6 +49,7 @@ window.addEventListener("load", () => {
         agregarLibro(libro);
         console.log(libro);
     })
-})        
+})
+        
 
 
