@@ -79,7 +79,7 @@ export let obtenerLibro = async (idLibro) => {
 }
 
 // Función para actualizar un libro
-export let actualizarLibro = async (id, libro) => {
+export let actualizarlibros = async (id, libro) => {
     try {
         const docRef = doc(db, "libros", id);
         await updateDoc(docRef, { ...libro });
