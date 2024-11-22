@@ -35,21 +35,29 @@ window.addEventListener("load", () => {
         console.log(vSexoMasculino);
         console.log(vSexoFemenino);
         console.log(vGenero);
+
+        // Validación básica de los datos
+        if (!vNombre || !vAutor || !vEditorial || isNaN(vAnio) || isNaN(vValoracion) || !vPais || !vGenero) {
+            alert("Por favor, completa todos los campos correctamente.");
+            return;
+        }
+
         let libro = {
             'nombre':vNombre,
-            'nombre':vDirector,
-            'nombre':vEditorial,
-            'nombre':vAnio,
-            'nombre':vValoracion,
-            'nombre':vPais,
-            'nombre':vSexoMasculino,
-            'nombre':vSexoFemenino,
-            'nombre':vGenero,
+            'autor': vAutor,
+            'editoial':vEditorial,
+            'anio':vAnio,
+            'valoracion':vValoracion,
+            'pais':vPais,
+            'sexoMasculino':vSexoMasculino,
+            'sexoFemenino':vSexoFemenino,
+            'genero':vGenero,
         }
+
         agregarLibro(libro);
         console.log(libro);
     })
 })
-        
+
 
 
