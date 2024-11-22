@@ -1,4 +1,4 @@
-import { actualizarLibro, obtenerLibro } from "./Firebase.js";  // Asegúrate de que estas funciones estén en el archivo Firebase.js
+import { actualizarLibro, obtenerLibro } from "./Promesas.js";  // Asegúrate de que estas funciones estén en el archivo Firebase.js
 
 window.addEventListener("load", () => {
     alert("Llegué");
