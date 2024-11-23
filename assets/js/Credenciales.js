@@ -1,3 +1,5 @@
+ // Exporta un objeto llamado `firebaseConfig` que contiene la configuración específica de un proyecto de Firebase.
+// Este objeto es utilizado para conectar tu aplicación al proyecto Firebase correspondiente.
  export const firebaseConfig = {
     apiKey: "AIzaSyBo7Vw8KATBsq7MkoRjpNTkOcN77TJ5i_Q",
     authDomain: "prueba3progafrontend.firebaseapp.com",
