@@ -5,7 +5,7 @@ import { agregarLibro, obtenerLibros, actualizarlibros, eliminarLibro } from "./
 window.addEventListener("load", () => {
     console.log("Página cargada");
 
-    // *** Funcionalidades de Accesibilidad ***
+    // *** Funcionalidades de los botones de Accesibilidad ***
     // Botón para aumentar el tamaño del texto
     document.getElementById("aumentarTexto").addEventListener("click", () => {
         console.log("Aumentar texto activado");
