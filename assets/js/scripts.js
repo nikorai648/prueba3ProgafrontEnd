@@ -2,7 +2,7 @@
 import { agregarLibro, obtenerLibros, actualizarlibros, eliminarLibro } from "./Promesas.js";
 
 // Esperamos a que la página cargue completamente
-window.addEventListener("load", () => {
+document.addEventListener("DOMContentLoaded", () => {
     console.log("Página cargada");
 
     // *** Funcionalidades de los botones de Accesibilidad ***
